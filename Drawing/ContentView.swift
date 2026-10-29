@@ -3,16 +3,17 @@ import Playgrounds
 
 
 struct ContentView: View {
-    @State private var colorCycle = 0.0
+    @State private var insetAmount = 50.0
     
     var body: some View {
-        VStack {
-            ColorCyclingCircle(amount: colorCycle)
-                .frame(width: 300, height: 300)
-            
-            Slider(value: $colorCycle)
-        }
-        .padding()
+        Trapezoid(insetAmount: insetAmount)
+            .frame(width: 200, height: 100)
+            .padding(50)
+            .onTapGesture {
+                withAnimation {
+                    insetAmount = Double.random(in: 10...90)
+                }
+            }
     }
 }
 
